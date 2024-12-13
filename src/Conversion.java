@@ -8,6 +8,7 @@ public class Conversion {
     String monedaBase;
     String monedaDestino;
     float tasaConversion;
+    float valorBase;
     float resultado;
     Map<String, Float> tasaConversiones;
 
@@ -15,22 +16,24 @@ public class Conversion {
 
     }
 
-    public Conversion(Date fechaConversion, String monedaBase, String monedaDestino,
-                      float tasaConversion, float resultado, Map<String, Float> tasaConversiones) {
+    public Conversion(Date fechaConversion, String monedaBase, String monedaDestino, float tasaConversion,
+                      float valorBase, float resultado, Map<String, Float> tasaConversiones) {
         this.fechaConversion = fechaConversion;
         this.monedaBase = monedaBase;
         this.monedaDestino = monedaDestino;
         this.tasaConversion = tasaConversion;
+        this.valorBase = valorBase;
         this.resultado = resultado;
         this.tasaConversiones = tasaConversiones;
     }
 
-    public Conversion(Date fechaConversion, String monedaBase,
-                      String monedaDestino, float tasaConversion, float resultado) {
+    public Conversion(Date fechaConversion, String monedaBase, String monedaDestino,
+                      float tasaConversion, float valorBase, float resultado) {
         this.fechaConversion = fechaConversion;
         this.monedaBase = monedaBase;
         this.monedaDestino = monedaDestino;
         this.tasaConversion = tasaConversion;
+        this.valorBase = valorBase;
         this.resultado = resultado;
     }
 
@@ -64,6 +67,14 @@ public class Conversion {
 
     public void setTasaConversion(float tasaConversion) {
         this.tasaConversion = tasaConversion;
+    }
+
+    public float getValorBase() {
+        return valorBase;
+    }
+
+    public void setValorBase(float valorBase) {
+        this.valorBase = valorBase;
     }
 
     public float getResultado() {

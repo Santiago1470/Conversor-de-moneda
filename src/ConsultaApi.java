@@ -29,7 +29,7 @@ public class ConsultaApi {
         return new Gson().fromJson(response.body(), ConversionApi.class);
     }
 
-    public float realizarConversion(String monedaBase, String monedaDestino, float valor) {
+    public ConversionApi realizarConversion(String monedaBase, String monedaDestino, float valor) {
         String url = "https://v6.exchangerate-api.com/v6/60888da80372f5b1cd40b07d/pair/%s/%s/%s"
                 .formatted(monedaBase, monedaDestino, String.valueOf(valor));
         URI direccion = URI.create(url);
@@ -44,7 +44,7 @@ public class ConsultaApi {
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }
-        ConversionApi conversionApi = new Gson().fromJson(response.body(), ConversionApi.class);
-        return conversionApi.conversion_result();
+
+        return new Gson().fromJson(response.body(), ConversionApi.class);
     }
 }

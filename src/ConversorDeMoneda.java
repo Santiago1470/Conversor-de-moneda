@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
@@ -5,6 +6,7 @@ import java.util.Scanner;
 public class ConversorDeMoneda {
     private Scanner scanner = new Scanner(System.in);
     private ConsultaApi consultaApi = new ConsultaApi();
+    private List<Conversion> historial = new ArrayList<>();
 
     public static void main(String[] args) {
         ConversorDeMoneda conversorDeMoneda = new ConversorDeMoneda();
@@ -36,16 +38,82 @@ public class ConversorDeMoneda {
     }
 
     public void seleccionarOpcion(byte opcion) {
+        String monedaBase;
+        String monedaDestino;
+
         switch (opcion) {
             case 1:
-                System.out.println("Ingrese el valor que desea convertir:");
-                float valor = Float.parseFloat(scanner.nextLine());
-                float resultado = consultaApi.realizarConversion("USD", "ARS", valor);
-                System.out.printf("El valor %s [USD] corresponde al valor final de ==> %s [ARS]%n",
-                        String.valueOf(valor), String.valueOf(resultado));
-                System.out.println("");
+                monedaBase = "USD";
+                monedaDestino = "ARS";
+                realizarConversion(monedaBase, monedaDestino);
 
                 break;
+
+            case 2:
+                monedaBase = "ARS";
+                monedaDestino = "USD";
+                realizarConversion(monedaBase, monedaDestino);
+
+                break;
+
+            case 3:
+                monedaBase = "USD";
+                monedaDestino = "BRL";
+                realizarConversion(monedaBase, monedaDestino);
+
+                break;
+
+            case 4:
+                monedaBase = "BRL";
+                monedaDestino = "USD";
+                realizarConversion(monedaBase, monedaDestino);
+
+                break;
+
+            case 5:
+                monedaBase = "USD";
+                monedaDestino = "COP";
+                realizarConversion(monedaBase, monedaDestino);
+
+                break;
+
+            case 6:
+                monedaBase = "COP";
+                monedaDestino = "USD";
+                realizarConversion(monedaBase, monedaDestino);
+
+                break;
+
+            case 7:
+
+
+                break;
+
+            case 8:
+
+
+                break;
+
+            case 9:
+                System.out.println("Gracias por utilizar nuestros servicos.");
+
+                break;
+
+            default:
+                System.out.println("La opción ingresada no existe.");
         }
+    }
+
+    public void realizarConversion(String monedaBase, String monedaDestino){
+        System.out.println("Ingrese el valor que desea convertir:");
+        float valor = Float.parseFloat(scanner.nextLine());
+        ConversionApi conversionResultado = consultaApi.realizarConversion(monedaBase, monedaDestino, valor);
+        float resultado = (float) Math.round(conversionResultado.conversion_result() * 100) / 100;
+        System.out.printf("El valor %s [%s] corresponde al valor final de ==> %s [%s]%n",
+                String.valueOf(valor), monedaBase, String.valueOf(resultado), monedaDestino);
+        System.out.println("");
+        Conversion conversion = new Conversion(new Date(), monedaBase, monedaDestino,
+                conversionResultado.conversion_rate(), valor, resultado);
+        this.historial.add(conversion);
     }
 }
