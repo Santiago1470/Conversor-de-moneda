@@ -1,3 +1,4 @@
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -18,6 +19,7 @@ public class ConversorDeMoneda {
 
     public String mostrarMenu(){
         return """
+                *****************************************************
                 Sea bienvenido/a al Conversor de Monedas =)
                 1) Dólar ==> Peso argentino
                 2) Peso argentino ==> Dólar
@@ -39,8 +41,9 @@ public class ConversorDeMoneda {
                 System.out.println("Ingrese el valor que desea convertir:");
                 float valor = Float.parseFloat(scanner.nextLine());
                 float resultado = consultaApi.realizarConversion("USD", "ARS", valor);
-                System.out.printf("El valor %.2f [USD] corresponde al valor final de ==> %.2f [ARS]%n", valor, resultado);
-                System.out.println("El valor " + valor + " [USD] corresponde al valor final de ==> " + resultado + "[ARS]");
+                System.out.printf("El valor %s [USD] corresponde al valor final de ==> %s [ARS]%n",
+                        String.valueOf(valor), String.valueOf(resultado));
+                System.out.println("");
 
                 break;
         }

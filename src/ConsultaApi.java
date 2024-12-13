@@ -5,7 +5,6 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.List;
 
 public class ConsultaApi {
 
@@ -13,7 +12,7 @@ public class ConsultaApi {
 
     }
 
-    public Conversion listarConversiones(){
+    public ConversionApi listarConversiones(){
         URI direccion = URI.create("https://v6.exchangerate-api.com/v6/60888da80372f5b1cd40b07d/codes");
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -27,7 +26,7 @@ public class ConsultaApi {
             throw new RuntimeException(e);
         }
 
-        return new Gson().fromJson(response.body(), Conversion.class);
+        return new Gson().fromJson(response.body(), ConversionApi.class);
     }
 
     public float realizarConversion(String monedaBase, String monedaDestino, float valor) {
@@ -45,7 +44,7 @@ public class ConsultaApi {
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }
-        Conversion conversion = new Gson().fromJson(response.body(), Conversion.class);
-        return conversion.conversion_result();
+        ConversionApi conversionApi = new Gson().fromJson(response.body(), ConversionApi.class);
+        return conversionApi.conversion_result();
     }
 }
