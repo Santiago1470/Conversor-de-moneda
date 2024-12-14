@@ -14,7 +14,7 @@ public class ConsultaApi {
 
     public ConsultaApi(){
         Properties props = new Properties();
-        try (FileInputStream fis = new FileInputStream("src/config.properties")) {
+        try (FileInputStream fis = new FileInputStream("config.properties")) {
             props.load(fis);
         } catch (IOException e) {
             throw new RuntimeException("No se pudo cargar el archivo de configuración", e);
