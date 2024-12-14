@@ -111,7 +111,7 @@ public class ConversorDeMoneda {
         float resultado = (float) Math.round(conversionResultado.conversion_result() * 100) / 100;
         System.out.printf("El valor %s [%s] corresponde al valor final de ==> %s [%s]%n",
                 String.valueOf(valor), monedaBase, String.valueOf(resultado), monedaDestino);
-        System.out.println("");
+        System.out.println();
         Conversion conversion = new Conversion(new Date(), monedaBase, monedaDestino,
                 conversionResultado.conversion_rate(), valor, resultado);
         this.historial.add(conversion);
