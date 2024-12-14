@@ -39,7 +39,7 @@ public class ConsultaApi {
         return new Gson().fromJson(response.body(), ConversionApi.class);
     }
 
-    public ConversionApi realizarConversion(String monedaBase, String monedaDestino, float valor) {
+    public ConversionApi realizarConversion(String monedaBase, String monedaDestino, double valor) {
         String direccion = this.URL_API + "/pair/%s/%s/%s"
                 .formatted(monedaBase, monedaDestino, String.valueOf(valor));
         HttpClient client = HttpClient.newHttpClient();

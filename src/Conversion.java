@@ -7,17 +7,17 @@ public class Conversion {
     Date fechaConversion;
     String monedaBase;
     String monedaDestino;
-    float tasaConversion;
-    float valorBase;
-    float resultado;
-    Map<String, Float> tasaConversiones;
+    double tasaConversion;
+    double valorBase;
+    double resultado;
+    Map<String, Double> tasaConversiones;
 
     public Conversion() {
 
     }
 
-    public Conversion(Date fechaConversion, String monedaBase, String monedaDestino, float tasaConversion,
-                      float valorBase, float resultado, Map<String, Float> tasaConversiones) {
+    public Conversion(Date fechaConversion, String monedaBase, String monedaDestino, double tasaConversion,
+                      double valorBase, double resultado, Map<String, Double> tasaConversiones) {
         this.fechaConversion = fechaConversion;
         this.monedaBase = monedaBase;
         this.monedaDestino = monedaDestino;
@@ -28,7 +28,7 @@ public class Conversion {
     }
 
     public Conversion(Date fechaConversion, String monedaBase, String monedaDestino,
-                      float tasaConversion, float valorBase, float resultado) {
+                      double tasaConversion, double valorBase, double resultado) {
         this.fechaConversion = fechaConversion;
         this.monedaBase = monedaBase;
         this.monedaDestino = monedaDestino;
@@ -61,35 +61,35 @@ public class Conversion {
         this.monedaDestino = monedaDestino;
     }
 
-    public float getTasaConversion() {
+    public double getTasaConversion() {
         return tasaConversion;
     }
 
-    public void setTasaConversion(float tasaConversion) {
+    public void setTasaConversion(double tasaConversion) {
         this.tasaConversion = tasaConversion;
     }
 
-    public float getValorBase() {
+    public double getValorBase() {
         return valorBase;
     }
 
-    public void setValorBase(float valorBase) {
+    public void setValorBase(double valorBase) {
         this.valorBase = valorBase;
     }
 
-    public float getResultado() {
+    public double getResultado() {
         return resultado;
     }
 
-    public void setResultado(float resultado) {
+    public void setResultado(double resultado) {
         this.resultado = resultado;
     }
 
-    public Map<String, Float> getTasaConversiones() {
+    public Map<String, Double> getTasaConversiones() {
         return tasaConversiones;
     }
 
-    public void setTasaConversiones(Map<String, Float> tasaConversiones) {
+    public void setTasaConversiones(Map<String, Double> tasaConversiones) {
         this.tasaConversiones = tasaConversiones;
     }
 }

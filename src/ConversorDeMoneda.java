@@ -1,7 +1,6 @@
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Scanner;
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.util.*;
 
 public class ConversorDeMoneda {
     private Scanner scanner = new Scanner(System.in);
@@ -85,7 +84,38 @@ public class ConversorDeMoneda {
                 break;
 
             case 7:
-
+                ConversionApi conversiones = this.consultaApi.listarConversiones();
+                String listaMonedas = listarMonedas(conversiones);
+                System.out.println("¿Qué moneda desea convertir?");
+                System.out.println(listaMonedas);
+                int numeroOpcion = 0;
+                do{
+                    System.out.println("Elija una opción de moneda base válida:");
+                    numeroOpcion = Integer.parseInt(scanner.nextLine());
+                    monedaBase = seleccionarMoneda(conversiones, numeroOpcion);
+                    if(monedaBase != null){
+                        break;
+                    }
+                } while(numeroOpcion != 1);
+                if(numeroOpcion == 1){
+                    System.out.println(monedaBase);
+                    break;
+                }
+                System.out.println("¿Qué moneda de destino desea?");
+                System.out.println(listaMonedas);
+                do{
+                    System.out.println("Elija una opción de moneda de destino válida:");
+                    numeroOpcion = Integer.parseInt(scanner.nextLine());
+                    monedaDestino = seleccionarMoneda(conversiones, numeroOpcion);
+                    if(monedaDestino != null){
+                        break;
+                    }
+                } while(numeroOpcion != 1);
+                if (numeroOpcion == 1){
+                    System.out.println(monedaDestino);
+                    break;
+                }
+                realizarConversion(monedaBase, monedaDestino);
 
                 break;
 
@@ -106,14 +136,49 @@ public class ConversorDeMoneda {
 
     public void realizarConversion(String monedaBase, String monedaDestino){
         System.out.println("Ingrese el valor que desea convertir:");
-        float valor = Float.parseFloat(scanner.nextLine());
+        double valor = Double.parseDouble(scanner.nextLine());
         ConversionApi conversionResultado = consultaApi.realizarConversion(monedaBase, monedaDestino, valor);
-        float resultado = (float) Math.round(conversionResultado.conversion_result() * 100) / 100;
-        System.out.printf("El valor %s [%s] corresponde al valor final de ==> %s [%s]%n",
-                String.valueOf(valor), monedaBase, String.valueOf(resultado), monedaDestino);
+
+        double resultado = conversionResultado.conversion_result();
+
+        System.out.printf(Locale.US, "El valor %.2f [%s] corresponde al valor final de ==> %.2f [%s]%n",
+                valor, monedaBase, resultado, monedaDestino);
         System.out.println();
         Conversion conversion = new Conversion(new Date(), monedaBase, monedaDestino,
                 conversionResultado.conversion_rate(), valor, resultado);
         this.historial.add(conversion);
+    }
+
+    public String listarMonedas(ConversionApi conversionApi){
+        List<List<String>> conversiones = conversionApi.supported_codes();
+        StringBuilder lista = new StringBuilder();
+        lista.append("1) Cancelar operación.\n");
+        for (int i = 0; i < conversiones.size(); i++) {
+            lista.append(i + 2).append(") ");
+            for (int j = 0; j < conversiones.get(i).size(); j++) {
+                lista.append(conversiones.get(i).get(j));
+                if (j % 2 == 0) {
+                    lista.append(" - ");
+                }
+            }
+            lista.append("\n");
+        }
+        // System.out.println(conversiones.get(3));
+        return lista.toString();
+    }
+
+    public String seleccionarMoneda(ConversionApi conversiones, int opcion){
+        List<List<String>> lista = conversiones.supported_codes();
+        if(opcion == 1){
+            return "Conversión cancelada.";
+        } else {
+            for (int i = 0; i < lista.size(); i++){
+                if(opcion == (i + 2)){
+                    return lista.get(i).getFirst();
+                }
+            }
+            return null;
+        }
+
     }
 }
