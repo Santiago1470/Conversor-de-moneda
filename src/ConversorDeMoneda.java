@@ -1,4 +1,5 @@
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.*;
 
@@ -120,7 +121,7 @@ public class ConversorDeMoneda {
                 break;
 
             case 8:
-
+                mostrarHistorial();
 
                 break;
 
@@ -143,8 +144,10 @@ public class ConversorDeMoneda {
 
         System.out.printf(Locale.US, "El valor %.2f [%s] corresponde al valor final de ==> %.2f [%s]%n",
                 valor, monedaBase, resultado, monedaDestino);
+//        System.out.println("El valor " + valor + " [" + monedaBase + "] corresponde al valor final de ==> " +
+//                resultado + " [" + monedaDestino + "]");
         System.out.println();
-        Conversion conversion = new Conversion(new Date(), monedaBase, monedaDestino,
+        Conversion conversion = new Conversion((this.historial.size() + 1), new Date(), monedaBase, monedaDestino,
                 conversionResultado.conversion_rate(), valor, resultado);
         this.historial.add(conversion);
     }
@@ -163,7 +166,6 @@ public class ConversorDeMoneda {
             }
             lista.append("\n");
         }
-        // System.out.println(conversiones.get(3));
         return lista.toString();
     }
 
@@ -179,6 +181,16 @@ public class ConversorDeMoneda {
             }
             return null;
         }
+    }
 
+    public void mostrarHistorial(){
+        System.out.println("""
+                -----------------------------------------------------
+                Historial de conversiones:
+                -----------------------------------------------------
+                """);
+        for (Conversion c: this.historial){
+            System.out.println(c.toString());
+        }
     }
 }
