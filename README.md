@@ -18,6 +18,6 @@ Para hacer uso de este proyecto se debe seguir los siguientes pasos:
 2. Descomprimir el archivo descargado (en caso de haber descargado el repositorio)
 3. Abrir el proyecto en un IDE (Entorno de Desarrollo Integrado) o herramienta de desarrollo
 ## Nota
-Para consumir la API seleccionada para este proyecto se debe crear una cuenta en www.exchangerate-api.com y seguir los pasos para obtener la API KEY personal. Una vez obtenida la API KEY, se debe crear un archivo llamado "config.properties" en el mismo nivel de la carpeta src, es decir, dentro de la carpeta "Conversor-de-moneda" (carpeta principal). Dentro del archivo "config.properties" se debe crear la propiedad "api.key" y asignarle el valor de la API KEY obtenida. Ejemplo: api.key=MI-API-KEY. Teniendo listo esto, no debería haber problemas para consumir la API ExchangeRate-API.
+Para consumir la API seleccionada para este proyecto se debe crear una cuenta gratuita en www.exchangerate-api.com y seguir los pasos para obtener la API KEY personal. Una vez obtenida la API KEY, se debe crear un archivo llamado "config.properties" en el mismo nivel de la carpeta src, es decir, dentro de la carpeta "Conversor-de-moneda" (carpeta principal). Dentro del archivo "config.properties" se debe crear la propiedad "api.key" y asignarle el valor de la API KEY obtenida. Ejemplo: api.key=MI-API-KEY. Teniendo listo esto, no debería haber problemas para consumir la API ExchangeRate-API.
 ## Autor
 Santiago Jair Torres Rivera
