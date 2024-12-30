@@ -1,5 +1,5 @@
 # Conversor de moneda
-Este proyecto fue desarrollado para el programa educativo de Oracle ONE en la plataforma de Alura para el curso de Java Orientado a Objetos G7 - ONE, donde se aprendió el lenguaje de programación Java, programación orientada objetos, estructuras de datos y consumo de APIs. El proyecto desarrollado se encarga de realizar solicitudes a una API de tasas de cambio, a manipular datos JSON y, finalmente, a filtrar y mostrar la conversión deseada según la opción que seleccione el usuario.
+Este proyecto fue desarrollado para el programa educativo de Oracle ONE en la plataforma de Alura para el curso de Java Orientado a Objetos G7 - ONE, donde se aprendió el lenguaje de programación Java, programación orientada a objetos, estructuras de datos y consumo de APIs. El proyecto desarrollado se encarga de realizar solicitudes a una API de tasas de cambio, a manipular datos JSON y, finalmente, a filtrar y mostrar la conversión deseada según la opción que seleccione el usuario.
 ## Descipción del desafío
 ### Pasos generales para completar el desafío
 1. Consumo de la API
